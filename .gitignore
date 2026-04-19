@@ -1,0 +1,82 @@
+# Виртуальное окружение
+venv/
+env/
+.venv/
+ENV/
+venv.bak/
+.envrc
+
+# Кэш и байт-код Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Логи и временные файлы
+*.log
+*.pid
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Базы данных (локальные SQLite)
+*.db
+*.sqlite
+*.sqlite3
+
+# Переменные окружения с секретами
+.env
+.env.local
+.env.production
+.flaskenv
+
+# Тесты и покрытие
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.iml
+.project
+.pydevproject
+.settings/
+*.sublime-*
+
+# Системные файлы
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Docker
+docker-compose.override.yml
+*.pid
+docker-compose*.yml.bak
+
+# Файлы отчётов
+*.pdf
+*.html
+report/
+
+# Railway
+.railway/
+
+# Postman коллекции (если сохраняете локально, но лучше хранить в репозитории, поэтому не игнорируем)
+# !*.postman_collection.json
