@@ -12,10 +12,11 @@ REST API сервис для управления заметками с подд
 ## Технологии
 - Python 3.9
 - Flask
-- SQLAlchemy
 - PostgreSQL
-- Docker
-- pytest
+- Gunicorn
+- Psycopg2
+- Pytest
+- Railway
 
 ## Локальный запуск
 

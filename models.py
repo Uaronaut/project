@@ -1,7 +1,8 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey
+# models.py
+from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
-from datetime import datetime
+from sqlalchemy.orm import sessionmaker
+import os
 
 Base = declarative_base()
 
@@ -10,28 +11,14 @@ class Note(Base):
     
     id = Column(Integer, primary_key=True)
     title = Column(String(200), nullable=False)
-    content = Column(String)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    
-    user = relationship('User', back_populates='notes')
-    tags = relationship('Tag', secondary='note_tags')
+    content = Column(Text)
+    created_at = Column(String(50))
+    updated_at = Column(String(50))
 
-class User(Base):
-    __tablename__ = 'users'
-    
-    id = Column(Integer, primary_key=True)
-    username = Column(String(80), unique=True, nullable=False)
-    email = Column(String(120), unique=True, nullable=False)
-    notes = relationship('Note', back_populates='user')
-
-class Tag(Base):
-    __tablename__ = 'tags'
-    
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), unique=True, nullable=False)
-
-# Настройка подключения
-engine = create_engine('postgresql://user:pass@localhost/notes_db')
-Session = sessionmaker(bind=engine)
+# Функция для получения сессии (если используете SQLAlchemy)
+def get_session():
+    DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///notes.db')
+    engine = create_engine(DATABASE_URL)
+    Base.metadata.create_all(engine)  # создаёт таблицу, если её нет
+    Session = sessionmaker(bind=engine)
+    return Session()
